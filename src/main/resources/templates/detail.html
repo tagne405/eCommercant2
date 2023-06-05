@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+                layout:decorate="navBarUser.html">
+<head>
+    
+    <title>Detail</title>
+</head>
+<body>
+    <div layout:fragment="content">
+
+
+        <form th:action="@{/addToCart}" method="post">
+            <div class="alert alert-success" style="margin-top:5%" th:if="${success}">
+                <h4 th:text="${success}"></h4>
+            </div>
+            <section class="col-md-12 row container" style="margin-top: 3%;" th:each=" produit: ${detailproduit}">
+
+                <div class="col-md-6" style="margin-top: 5%;">
+                    <img class=" " th:src = "'data:image/png;base64,' + ${produit.photo}" alt="fff" style="height: 35rem; width: 30rem; margin-left: 20%; ">
+                </div>
+                    <div class="col-md-6" style="height:100%">
+                        <div class="text-center" style="font-weight: bold; font-size: x-large; font-style: italic; ">Caracteristique</div>
+                        <h1 th:text="${produit.description}"></h1>
+                        <div class=" ">
+                            <input type="hidden" th:value="${produit.id}" name="id">
+                            <button type="submit" style="background: #51aef0; color : white; font-weight: bold; width: 60%;" class="btn btn-lg ml-5">J'ACHETE</button>
+                        </div>
+                        Libero tenetur architecto aliquam temporibus rerum nam. Ex, dolor esse? Fugiat nostrum velit rerum, excepturi culpa, sapiente impedit aliquam quam laboriosam error vero unde aut obcaecati iste ex ullam? Dignissimos.
+                        Nulla fugit itaque repudiandae! Voluptate qui voluptatum id assumenda doloribus accusantium vel, voluptas similique repellat libero laudantium repellendus nisi vero? Quod ipsam quibusdam dolorum, fugiat quo nesciunt ea non ipsum!
+                        A velit eaque optio vitae labore nihil quia obcaecati, unde commodi illo repellendus corrupti nemo. Reiciendis porro deserunt eius excepturi voluptatem! Consequuntur numquam delectus sunt incidunt nam iure nostrum cupiditate?
+                        Assumenda, itaque laudantium voluptas quas obcaecati, consectetur tenetur dicta reiciendis explicabo totam neque accusantium, ducimus exercitationem aperiam nobis deserunt. Nobis error cupiditate commodi aperiam explicabo itaque amet tenetur.
+                        Facilis perferendis accusamus voluptatum velit. Consectetur laudantium voluptatibus nisi tempore! Ullam assumenda ipsum, in culpa minima itaque. Assumenda nisi totam qui est illo vitae recusandae. Perferendis odio consequuntur molestiae sit!
+                        Blanditiis neque accusantium labore reiciendis reprehenderit non consequatur deleniti cupiditate fuga est, consectetur autem optio. Neque aspernatur est, odit adipisci, facilis ipsa tempora ipsam explicabo veritatis, sit tempore aperiam cum.
+                    </div>
+
+            </section>
+        </form>
+
+    </div>
+    <!-- endnavbar -->
+    <br><br>
+
+    
+    <!-- <script th:src="@{/javascipt/java.js}" type="text/javascript"></script> -->
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+                layout:decorate="navBar.html">
+
+<head>
+    
+    <title>Vente</title>
+</head>
+
+<body class="" style="background-color: rgb(232, 231, 231);">
+
+    
+    <div layout:fragment="content">
+
+        <!-- cardBody -->
+        <div class=" " id="largerBody" style="margin-left:17%;">
+
+            <section class="body-header">
+                <h1>Liste des Commandes</h1>
+            </section>
+
+            <!-- <section class="row container"> -->
+            <!-- <div> -->
+            <div class="container bg-white pt-4 shadow-lg p-3 mb-5 rounded" id="hideBody" style="border-radius: 5px;">
+                <div>
+                   
+                    <div th:if="${success}" >
+                        <p th:text="${success}" class="text-center alert alert-success"></p>
+                    </div>
+                    <div th:if="${failed}">
+                        <h3 th:text="${failed}" class="text-center alert alert-warning"></h3>
+                    </div>
+                    <div th:if="${vide}">
+                        <h4 class="text-center alert alert-warning" th:text="${vide}"></h4>
+                    </div>
+                </div>
+                <table id="example" class="table table-striped table-bordered " style="width:100%; height: 10rem; font-size: smaller;box-shadow: #0a0a0a">
+
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th >Date de Commande</th>
+                            <th>Prix Total</th>
+                            <th>Status de la Commande</th>
+                            <th>Client</th>
+                            <th>Details</th>
+                            <th >Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr th:each=" p: ${orders}">
+                            <td th:text="${p.id}"></td>
+                            <td th:text="${p.orderDate}"> </td>
+                            <td th:text="${p.prixTotal}"> </td>
+                            <td th:text="${p.statusOrdre}"></td>
+                            <td th:text="${p.customer.firstName}"></td>
+                            <td ><a  th:href="@{/admin/order/{id} (id = ${p.id})}" class="btn btn-primary">detail</a></td>
+                            <td ><a  th:href="@{/admin/order/{id} (id = ${p.id})}" class="btn btn-primary">Modifier</a>
+                                <!--<a th:if="${p.is_delete == true}" th:href="@{/admin/enabledProduit/{id} (id = ${p.id})}" class="btn btn-warning">Activer</a>
+                                <a th:if="${p.is_delete == false}" th:href="@{/admin/deleteProduit/{id} (id = ${p.id})}" class="btn btn-danger">Suprimer</a>-->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+
+
+</html>
