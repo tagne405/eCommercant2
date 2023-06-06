@@ -28,6 +28,24 @@
 
         // Appel périodique de la fonction toutes les 5 secondes (5000 ms)
         setInterval(updateTotalItems, 5000);
+
+
+
+        function addToCart(productId, quantity) {
+            $.ajax({
+                url: "/addToCart",
+                type: "POST",
+                data: { id: productId, quantite: quantity },
+                success: function(response) {
+                    // Le produit a été ajouté avec succès
+                    console.log(response);
+                },
+                error: function(xhr) {
+                    // Une erreur s'est produite lors de l'ajout du produit
+                    console.log(xhr.responseText);
+                }
+            });
+        }
     </script>
 
 
@@ -57,7 +75,6 @@
     <section class="trending-product" id="trending" >
         <div class="center-text">
             <h2>Liste De <span>Products</span> </h2>
-            <button onclick="updateTotalItems()">je suis le button</button>
         </div>
 
         <div class="products">
@@ -78,7 +95,7 @@
                             </div>
                             <div class="product-cart">
                                 <input type="hidden" th:value="${produit.id}" name="id">
-                                <h4><input type="submit" style="background-color: #27b737 ; border-style: none; color: white;" value="Add to Panier"></h4>
+                                <h4><input onclick="addToCart()" style="background-color: #27b737 ; border-style: none; color: white;" value="Add to Panier"></h4>
                             </div>
                             <div class="ratting">
                                 <i class="fa fa-star" aria-hidden="true"></i>

@@ -54,10 +54,7 @@ public class CartController {
 
     }
 
-
-
-
-
+    // Endpoint Ajax pour récupérer le nombre total d'articles
     @GetMapping("/cart/nbpanier")
     @ResponseBody
     public int nbPannier(Model model,Principal principal, HttpSession session){
@@ -72,7 +69,7 @@ public class CartController {
 
         return shoppingCart.getTotalItems();
 
-    }
+        }
     }
     // Endpoint Ajax pour récupérer le nombre total d'articles
     @GetMapping("/cart/total-items")
