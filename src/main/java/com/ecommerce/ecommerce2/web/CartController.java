@@ -6,11 +6,7 @@ import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.ecommerce.ecommerce2.Entity.Customer;
 import com.ecommerce.ecommerce2.Entity.Produit;
@@ -56,6 +52,40 @@ public class CartController {
         model.addAttribute("shoppingCart", shoppingCart);}
         return "cart";
 
+    }
+
+
+
+
+
+    @GetMapping("/cart/nbpanier")
+    @ResponseBody
+    public int nbPannier(Model model,Principal principal, HttpSession session){
+
+
+        Customer customer = customerService.findByUsername(principal.getName());
+        ShoppingCart shoppingCart = customer.getShoppingcart();
+        if(shoppingCart == null){
+//            model.addAttribute("check", "FOULE KAN Y'a rien dans ton Panier");
+            return 0;
+        }else{
+
+        return shoppingCart.getTotalItems();
+
+    }
+    }
+    // Endpoint Ajax pour récupérer le nombre total d'articles
+    @GetMapping("/cart/total-items")
+    @ResponseBody
+    public int getTotalItems(HttpSession session) {
+
+
+        ShoppingCart shoppingCart = (ShoppingCart)session.getAttribute("shoppingCart");
+        if (shoppingCart != null) {
+            return shoppingCart.getTotalItems();
+        } else {
+            return 0;
+        }
     }
 
     @PostMapping("/addToCart")

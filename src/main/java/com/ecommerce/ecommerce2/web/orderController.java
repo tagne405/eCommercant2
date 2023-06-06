@@ -83,28 +83,29 @@ public class orderController {
     }
 
     /*Order for Admin*/
+//    @GetMapping("/admin/order")
+//    public String ListOrder(Principal principal, Model model){
+//        if(principal == null){
+//            return "redirect:/login";
+//        }
+//        List<Order> order = orderService.findAllOrder();
+//        model.addAttribute("orders",order);
+//        return "ListOrder";
+//    }
+
     @GetMapping("/admin/order")
-    public String ListOrder(Principal principal, Model model){
-        if(principal == null){
-            return "redirect:/login";
-        }
-        List<Order> order = orderService.findAllOrder();
-        model.addAttribute("orders",order);
-        return "ListOrder";
-    }
-
-    @GetMapping("/admin/order/{username}")
-    public String getOrder(@PathVariable("username")int username, Principal principal, Model model, RedirectAttributes redirectAttributes){
+    public String getOrder(Principal principal, Model model, RedirectAttributes redirectAttributes){
         if(principal == null){
             return "redirect:/login";
         }
 
-        List<OrderDetail> order = orderService.findOrder(username);
-//        model.addAttribute("orderDetails",orderDetails);
+        List<Order> orderDetails = orderService.findAllOrder();
+        List<OrderDetail> order = orderService.findOrderDetail();
+        model.addAttribute("orderDetails",orderDetails);
         if(order.isEmpty())
             redirectAttributes.addFlashAttribute("vide","La liste des Commandes est vide");
 
         model.addAttribute("orders",order);
-        return "ListOrderDetail";
+        return "ListOrder";
     }
 }

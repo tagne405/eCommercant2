@@ -5,6 +5,34 @@
 <head>
 
     <title>Acceuil2</title>
+
+    <script>
+        // Fonction qui appelle l'endpoint Ajax et met à jour l'élément DOM avec la réponse
+        function updateTotalItems() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/cart/nbpanier');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                   document.getElementById("nbPannier").textContent = xhr.responseText;
+                    // alert(xhr.responseText);
+                }
+                else {
+                    console.log('Request failed.  Returned status of ' + xhr.status);
+                }
+            };
+            xhr.send();
+        }
+
+        // Appel initial de la fonction
+        updateTotalItems();
+
+        // Appel périodique de la fonction toutes les 5 secondes (5000 ms)
+        setInterval(updateTotalItems, 5000);
+    </script>
+
+
+
+
 </head>
 <body>
     <div layout:fragment="content">
@@ -29,6 +57,7 @@
     <section class="trending-product" id="trending" >
         <div class="center-text">
             <h2>Liste De <span>Products</span> </h2>
+            <button onclick="updateTotalItems()">je suis le button</button>
         </div>
 
         <div class="products">

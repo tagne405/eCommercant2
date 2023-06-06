@@ -8,6 +8,7 @@ import java.util.List;
 import com.ecommerce.ecommerce2.Entity.*;
 import com.ecommerce.ecommerce2.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 
@@ -68,27 +69,18 @@ public class OrderService {
     }
 
     /*find the order of customer by the admin*/
-    public List<OrderDetail> findOrder(int order_id){
-        List<Customer> customer = customerRepository.findAll();
-//        for(Customer customer2 : customer){
-//            customer2.getUsername();
-//            Customer lo = customerRepository.findByUsername(String.valueOf(customer2));
-//            List<Order> detail = orderRepository.findOrderByCustomer(String.valueOf(lo));
-//        }
+    public List<OrderDetail> findOrderDetail(){
+//        List<Customer> customer = customerRepository.findAll();
+//        List<OrderDetail> orderDetails = orderDetailRepository.findOrderDetailByOrder_Id(order_id);
 
-        List<OrderDetail> orderDetails = orderDetailRepository.findOrderDetailByOrder_Id(order_id);
-
+        List<OrderDetail> orderDetails = orderDetailRepository.findAll();
         return orderDetails;
 
     }
 
     public List<Order> findAllOrder(){
-        return orderRepository.findAll();
+        List<Order> order = orderRepository.findAll();
+        return order;
     }
 
-
-//    public List<Order> findOrderByUsername(){
-//        List<Order> detail = orderRepository.findOrderByCustomer();
-//        return detail;
-//    }
 }

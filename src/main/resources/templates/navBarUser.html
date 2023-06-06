@@ -38,7 +38,9 @@
             <a th:if="${session.username != null}" th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
             <a  th:href="@{/cart}">
                 <i class="fa fa-cart-plus" aria-hidden="true">
-                <span style="font-size: small; margin-left: -25%;" class="badge badge-pill badge-warning" th:text="${session.totalItem == null} ? '0' : ${session.totalItem}"></span></i>
+                <span style="font-size: small; margin-left: -25%;" class="badge badge-pill badge-warning" id="nbPannier" ></span></i>
+
+               <!-- th:text="${session.totalItem == null} ? '0' : ${session.totalItem}-->
             </a>
             
             <!-- <div class="fas fa-list" id="menu-icon"></div> -->
